@@ -1,0 +1,27 @@
+{
+  "name": "teamprofilegenerator",
+  "version": "1.0.0",
+  "description": "Required dependencies to run CLI tool Team Profile Generator",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "inquirer": "^8.1.2",
+    "jest": "^27.0.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jesse-DeJong/Team-Profile-Generator.git"
+  },
+  "author": "Jesse De Jong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jesse-DeJong/Team-Profile-Generator/issues"
+  },
+  "homepage": "https://github.com/Jesse-DeJong/Team-Profile-Generator#readme"
+}
