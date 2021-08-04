@@ -8,10 +8,9 @@ describe('Verify the employee class', () => {
 
         const newEmployee = new Employee (name, id, email);
 
-        expect(newEmployee.name).tobe(name);
-        expect(newEmployee.id).tobe(id);
-        expect(typeof newEmployee.id).tobe('number');
-        expect(newEmployee.email).tobe(email);
-        expect(newEmployee.email).toinclude('@');
+        expect(newEmployee.name).toBe(name);
+        expect(newEmployee.id).toBe(id);
+        expect(typeof newEmployee.id).toBe('number');
+        expect(newEmployee.email).toBe(email);
     })
 })
