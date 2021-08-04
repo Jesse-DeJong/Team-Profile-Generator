@@ -5,8 +5,7 @@ const { newManager, newIntern, newEngineer, generateWebPage } = require('./src/p
 // Store array of object results from CLI prompts
 const teamMembers = [];
 
-// Initilisation -- Prompt for a Manager as there must always be a manager
-// Initiates the loop for any additional employees.
+// Initilisation -- Prompt for a Manager as there must always be a manager //
 createManager();
 
 // Recurring Function to prompt for additional employees
@@ -30,7 +29,6 @@ function createEmployee() {
     ])
     .then(function (data) {
         switch (data.role) {
-
         case 'Engineer':
             createEngineer()
             break;
@@ -39,15 +37,6 @@ function createEmployee() {
             break;
         default:
             generateWebPage(teamMembers)
-            // console.log(organisation);
-            // fs.writeFile('datadump.js', (JSON.stringify(organisation)), (err) => {
-            //     if (err) {
-            //         console.error(err)
-            //     } else {
-            //         console.log('The datadump file has been created successfully!');
-            //     }
-            // })
-
             break;
         } 
     })
