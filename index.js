@@ -24,6 +24,7 @@ inquirer
         type: 'input',
         message: 'What is the managers office number?'
     },
+    // Loop for adding additional employees //while? (answers.continue === true)?
     {
         name: 'continue',
         type: 'confirm',
