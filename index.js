@@ -1,13 +1,53 @@
 // Import Dependencies
 const inquirer = require('inquirer');
-const { newManager, newIntern, newEngineer } = require('./src/processor');
+const { newManager, newIntern, newEngineer, generateWebPage } = require('./src/processor');
+// Store array of object results from CLI prompts
 const organisation = [];
-// Initilisation 
+
+// Initilisation -- Prompt for a Manager as there must always be a manager
+// Initiates the loop for any additional employees.
 createManager();
-// Prompt for a Manager as there must always be a manager
+
+// Recurring Function to prompt for additional employees
+function createEmployee() {
+
+    inquirer.prompt([
+    {
+        name: 'continue',
+        type: 'confirm',
+        message: 'Would you like to add another employee?'
+    },
+    {
+        name: 'role',
+        type: 'list',
+        message: 'What is the employees role?',
+        choices: ['Engineer', 'Intern'],
+            when: function( data ) {
+                return data.continue === true;
+            }
+    }
+    ])
+    .then(function (data) {
+        switch (data.role) {
+
+        case 'Engineer':
+            createEngineer()
+            break;
+        case 'Intern':
+            createIntern()
+            break;
+        default:
+            // generateWebPage(organisation)
+            console.log(organisation);
+            break;
+        } 
+    })
+}
+
+// Function to create the managers details
 function createManager() {
-inquirer
-  .prompt([
+
+    inquirer.prompt([
     {
         name: 'name',
         type: 'input',
@@ -35,31 +75,64 @@ inquirer
   })
 }
 
-    // Initiate Loop for adding additional employees //while? (answers.continue === true)?
-//     {
-//         name: 'continue',
-//         type: 'confirm',
-//         message: 'Would you like to add another employee?'
-//     },
-//     {
-//         name: 'role',
-//         type: 'list',
-//         message: 'What is the employees role?',
-//         choices: ['Engineer', 'Intern'],
-//         when: function( data ) {
-//             return data.continue === true;
-//     }
-// }
-//     .then(function (data) {
-//             switch (data.role) {
+// Function to create a new Engineer
+function createEngineer() {
 
-//             case data.role === 'Engineer':
-//                 createEngineer()
-//                 break;
-//             case data.role === 'Intern':
-//                 createIntern()
-//                 break;
-//             } 
-//         })
-//     ])
-// }
+    inquirer.prompt([
+    {
+        name: 'name',
+        type: 'input',
+        message: 'What is the engineers name?'
+    },
+    {
+        name: 'id',
+        type: 'input',
+        message: 'What is the engineers employee id?'
+    },
+    {
+        name: 'email',
+        type: 'input',
+        message: 'What is the engineers email address?'
+    },
+    {
+        name: 'github',
+        type: 'input',
+        message: 'What is the engineers github name?'
+    }
+  ])
+  .then(data => {
+    organisation.push(newEngineer(data));
+    createEmployee();
+  })
+}
+
+// Function to create a new Intern
+function createIntern() {
+
+    inquirer.prompt([
+    {
+        name: 'name',
+        type: 'input',
+        message: 'What is the interns name?'
+    },
+    {
+        name: 'id',
+        type: 'input',
+        message: 'What is the interns employee id?'
+    },
+    {
+        name: 'email',
+        type: 'input',
+        message: 'What is the interns email address?'
+    },
+    {
+        name: 'school',
+        type: 'input',
+        message: 'Which school is the intern from?'
+    }
+  ])
+  .then(data => {
+    organisation.push(newIntern(data));
+    createEmployee();
+  })
+}

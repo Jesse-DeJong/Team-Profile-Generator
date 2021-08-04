@@ -4,6 +4,7 @@ const Engineer = require("../lib/Engineer");
 const Intern = require("../lib/Intern");
 const Manager = require("../lib/Manager");
 
+// Class processor functions
 function newManager(data) {
     return new Manager(data.name, data.id, data.email, data.officeNumber);
 }
@@ -16,4 +17,9 @@ function newEngineer(data) {
     return new Engineer(data.name, data.id, data.email, data.github);
 }
 
-module.exports = { newManager, newIntern, newEngineer }
+// HTML Constructor function
+function generateWebPage(organisation) {
+    organisation.filter('Manager');
+}
+
+module.exports = { newManager, newIntern, newEngineer, generateWebPage }
