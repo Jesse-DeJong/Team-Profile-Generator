@@ -1,8 +1,9 @@
 // Import Dependencies
 const inquirer = require('inquirer');
+const Employee = require('./lib/Employee');
 const { newManager, newIntern, newEngineer, generateWebPage } = require('./src/processor');
 // Store array of object results from CLI prompts
-const organisation = [];
+const teamMembers = [];
 
 // Initilisation -- Prompt for a Manager as there must always be a manager
 // Initiates the loop for any additional employees.
@@ -37,8 +38,16 @@ function createEmployee() {
             createIntern()
             break;
         default:
-            // generateWebPage(organisation)
-            console.log(organisation);
+            generateWebPage(teamMembers)
+            // console.log(organisation);
+            // fs.writeFile('datadump.js', (JSON.stringify(organisation)), (err) => {
+            //     if (err) {
+            //         console.error(err)
+            //     } else {
+            //         console.log('The datadump file has been created successfully!');
+            //     }
+            // })
+
             break;
         } 
     })
@@ -70,7 +79,7 @@ function createManager() {
     }
   ])
   .then(data => {
-    organisation.push(newManager(data));
+    teamMembers.push(newManager(data));
     createEmployee();
   })
 }
@@ -101,7 +110,7 @@ function createEngineer() {
     }
   ])
   .then(data => {
-    organisation.push(newEngineer(data));
+    teamMembers.push(newEngineer(data));
     createEmployee();
   })
 }
@@ -132,7 +141,7 @@ function createIntern() {
     }
   ])
   .then(data => {
-    organisation.push(newIntern(data));
+    teamMembers.push(newIntern(data));
     createEmployee();
   })
 }

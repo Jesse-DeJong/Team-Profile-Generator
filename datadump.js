@@ -1,0 +1,3 @@
+const dataDump = JSON.parse([{"name":"Bugs Bunny","id":"2354","email":"buggz@company.com","officeNumber":"0412456789"},{"name":"Daffey Duck","id":"5843","email":"daffey@company.com","github":"daffeyduck"},{"name":"Tasmanian Devil","id":"2493","email":"tassie@company.com","github":"tasdevil"},{"name":"Tweety Bird","id":"3490","email":"tweety@company.com","school":"Looney Tunes"},{"name":"Silvester","id":"2094","email":"silverster@company.com","school":"Tom and Jerry"}]);
+
+module.exports = dataDump;

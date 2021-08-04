@@ -22,7 +22,7 @@ function newEngineer(data) {
 
 // Manager
 function managerHTML(manager) {
-`<div class="card employee-card">
+return `<div class="card employee-card">
     <div class="card-header bg-primary text-white">
         <h2 class="card-title">${manager.getName()}</h2>
         <h3 class="card-title">${manager.getRole()}</h3>
@@ -31,7 +31,7 @@ function managerHTML(manager) {
         <ul class="list-group">
             <li class="list-group-item">Employee ID: ${manager.getId()}</li>
             <li class="list-group-item">Email Address: <a href="mailto:${manager.getEmail()}" alt="Link for ${manager.getName()}'s email address">${manager.getEmail()}</a></li>
-            <li class="list-group-item">Office number: ${manager.getOfficenumber()}</li>
+            <li class="list-group-item">Office number: ${manager.getOfficeNumber()}</li>
         </ul>
     </div>
 </div>`
@@ -39,7 +39,7 @@ function managerHTML(manager) {
 
 // Engineers
 function engineerHTML(engineer) {
-`<div class="card employee-card">
+return `<div class="card employee-card">
 <div class="card-header bg-primary text-white">
     <h2 class="card-title">${engineer.getName()}</h2>
     <h3 class="card-title">${engineer.getRole()}</h3>
@@ -56,7 +56,7 @@ function engineerHTML(engineer) {
 
 // Interns
 function internHTML(intern) {
-`<div class="card employee-card">
+return `<div class="card employee-card">
     <div class="card-header bg-primary text-white">
         <h2 class="card-title">${intern.getName()}</h2>
         <h3 class="card-title"></i>${intern.getRole()}</h3>
@@ -71,26 +71,36 @@ function internHTML(intern) {
 </div>`
 }
 
+
+// temp crap //
+// const dataString = [{"name":"Bugs Bunny","id":"2354","email":"buggz@company.com","officeNumber":"0412456789"},{"name":"Daffey Duck","id":"5843","email":"daffey@company.com","github":"daffeyduck"},{"name":"Tasmanian Devil","id":"2493","email":"tassie@company.com","github":"tasdevil"},{"name":"Tweety Bird","id":"3490","email":"tweety@company.com","school":"Looney Tunes"},{"name":"Silvester","id":"2094","email":"silverster@company.com","school":"Tom and Jerry"}];
+// generateWebPage(dataString)
+
+
+// 'organisation'
 // Employee Card Constructor calls function
 function generateWebPage(organisation) {
+    console.log(organisation); 
 
-    const managerCard = [];
+    let managerCard = '';
     const engineerCards = [];
     const internCards = [];
 
-    managerCard.push(organisation
-    .filter(Employee => Employee.getRole() === 'Manager')
+    managerCard = (organisation
+    .filter(employee => employee.getRole() === 'Manager')
     .map(manager => managerHTML(manager))
     );
     engineerCards.push(organisation
-    .filter(Employee => Employee.getRole() === 'Engineer')
+    .filter(employee => employee.getRole() === 'Engineer')
     .map(engineer => engineerHTML(engineer))
+    .join("")
     );
     internCards.push(organisation
-    .filter(Employee => Employee.getRole() === 'Intern')
+    .filter(employee => employee.getRole() === 'Intern')
     .map(intern => internHTML(intern))
+    .join("")
     );
-        
+        console.log(managerCard);
         buildPage(managerCard, engineerCards, internCards);
 }
 
