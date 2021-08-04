@@ -5,13 +5,15 @@ const Intern = require("../lib/Intern");
 const Manager = require("../lib/Manager");
 
 function newManager(data) {
-    new Manager(data.name, data.id, data.email, data.officeNumber);
+    return new Manager(data.name, data.id, data.email, data.officeNumber);
 }
 
 function newIntern(data) {
-    new Intern(data.name, data.id, data.email, data.school);
+    return new Intern(data.name, data.id, data.email, data.school);
 }
 
 function newEngineer(data) {
-    new Engineer(data.name, data.id, data.email, data.github);
+    return new Engineer(data.name, data.id, data.email, data.github);
 }
+
+module.exports = { newManager, newIntern, newEngineer }
